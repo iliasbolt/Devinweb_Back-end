@@ -111,6 +111,7 @@ class CitiesController extends Controller
     public function UserEndpoint(Request $request,$city,$datetime)
     {
         return $city.'//'.$datetime;
+        //ok
 
     }
 
