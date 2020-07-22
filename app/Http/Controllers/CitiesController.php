@@ -118,11 +118,12 @@ class CitiesController extends Controller
                 'info'=>'Do not send Empty values'
             ]);
 
-       $data = \App\Delivery_times::where('deliv_date','>=',Carbon::now())
-           ->where()
-           ->join('cities_delivery_times','cities_id','=','cities_delivery_times.id')
-           ->where('cities_id','=',$city)
-           ->get();
+        $data = DB::table('cities_delivery_times')
+            ->join('delivery_times','delivery_times.id','=','cities_delivery_times.delivery_times_id')
+            ->where('cities_delivery_times.cities_id',$city)
+            ->whereBetween('deliv_date',[Carbon::now(),Carbon::now()->addDays($datetime-1)])
+            ->get();
+
 
        return \response()->json([
           'dates' => $data
