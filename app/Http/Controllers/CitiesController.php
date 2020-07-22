@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Cities;
 use Carbon\Carbon;
+use DateTime;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
+use phpDocumentor\Reflection\Types\Array_;
 
 class CitiesController extends Controller
 {
@@ -124,9 +127,19 @@ class CitiesController extends Controller
             ->whereBetween('deliv_date',[Carbon::now(),Carbon::now()->addDays($datetime-1)])
             ->get();
 
+        //now we have the choosen city with her dates and time stamps with the exacts results
+        $days = 0;
+        $array = Array();
+        for($i=0 ; $i<count($data) ; $i++)
+        {
+            $day_name = $data[$i]->deliv_date;
+            $d = new DateTime($day_name);
+            $array[] = ['day_name'=> $d->format('l'),'date'=>$day_name,'delivery_items'=> $data[$i]];
+        }
+
 
        return \response()->json([
-          'dates' => $data
+          'dates' => $array
        ]);
     }
 
