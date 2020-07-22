@@ -108,11 +108,25 @@ class CitiesController extends Controller
 
     }
 
-    public function UserEndpoint(Request $request,$city,$datetime)
+    public function UserEndpoint($city,$datetime)
     {
-        return $city.'//'.$datetime;
-        //ok
 
+
+        if(!isset($datetime)||is_null($datetime) || empty($datetime))
+            return \response()->json([
+                'success'=>'no',
+                'info'=>'Do not send Empty values'
+            ]);
+
+       $data = \App\Delivery_times::where('deliv_date','>=',Carbon::now())
+           ->where()
+           ->join('cities_delivery_times','cities_id','=','cities_delivery_times.id')
+           ->where('cities_id','=',$city)
+           ->get();
+
+       return \response()->json([
+          'dates' => $data
+       ]);
     }
 
 }

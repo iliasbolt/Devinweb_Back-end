@@ -45,7 +45,7 @@ Route::post('/cities/{cities}/delivery_time','CitiesController@AttachingToDelive
 Route::post('/excluding/{cities}/{date}/','Delivery_times@excludeDelivery');
 
 // III. User EndPoints.
-Route::get('cities/{city_id}/delivery-dates-times/{number_of_days}','CitiesController@UserEndpoint');
+Route::get('cities/{city}/delivery-dates-times/{datetime}','CitiesController@UserEndpoint');
 
 
 
