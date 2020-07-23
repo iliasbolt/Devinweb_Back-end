@@ -76,8 +76,8 @@ class Delivery_Times extends Controller
            //now we can exclude the specific deleveries in the array
         }
         else{
-
             //that mean he choose to exclude all the deliveries of the specific date (in front-end maybe a button or simple check box  send "all" to back-end)
+
             if($delivery_at == "all")
             {
                 \App\Delivery_times::where('deliv_date','=',''.$date)
@@ -92,6 +92,7 @@ class Delivery_Times extends Controller
                 ]);
             }
             else{
+                //here if he is not send array of ids or all word  ...;
                 return response()->json([
                    'success'=>'no',
                    'info'=>"format not supported please send (array of ids or 'all' to exclude all)",
