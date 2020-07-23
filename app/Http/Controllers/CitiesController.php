@@ -50,7 +50,7 @@ class CitiesController extends Controller
 
 
     }
-    public function ShowAllCities()
+    /*public function ShowAllCities()
     {
         //return All The Cities from the database .
         return response()->json([
@@ -58,7 +58,7 @@ class CitiesController extends Controller
             'data'=>Cities::all(),
 
         ]);
-    }
+    }*/
 
     public function AttachingToDelivery(Request $request,$cities)
     {
@@ -130,6 +130,8 @@ class CitiesController extends Controller
         //now we have the choosen city with her dates and time stamps with the exacts results
         $days = 0;
         $array = Array();
+
+        //here i'm traying give the output array like the exemple .
         for($i=0 ; $i<count($data) ; $i++)
         {
             $day_name = $data[$i]->deliv_date;
@@ -137,7 +139,7 @@ class CitiesController extends Controller
             $array[] = ['day_name'=> $d->format('l'),'date'=>$day_name,'delivery_items'=> $data[$i]];
         }
 
-
+        //........... the output .......//
        return \response()->json([
           'dates' => $array
        ]);

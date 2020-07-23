@@ -30,11 +30,17 @@ use Illuminate\Support\Facades\Route;
 // Add New City .
 Route::post('cities','CitiesController@AddCity');
 
+
+
 //show All the delivery times just for testing
 //Route::get('delivery-times','Delivery_times@showAll');
 
+
+
 //Add New Delivery time
 Route::post('delivery-times','Delivery_times@AddDeliveryTime');
+
+
 
 ////Attaching cities to delivery times
 Route::post('/cities/{cities}/delivery_time','CitiesController@AttachingToDelivery');
@@ -43,6 +49,8 @@ Route::post('/cities/{cities}/delivery_time','CitiesController@AttachingToDelive
 
 // Excluding deliver times for some dates
 Route::post('/excluding/{cities}/{date}/','Delivery_times@excludeDelivery');
+
+
 
 // III. User EndPoints.
 Route::get('cities/{city}/delivery-dates-times/{datetime}','CitiesController@UserEndpoint');

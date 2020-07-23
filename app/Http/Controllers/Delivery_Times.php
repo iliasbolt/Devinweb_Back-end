@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class Delivery_Times extends Controller
 {
-    public function showAll()
+   /* public function showAll()
     {
         return response()->json([
             'success' => 'ok',
             'data' => \App\Delivery_times::all()
         ]);
-    }
+    }*/
 
     public function AddDeliveryTime(Request $request)
     {
